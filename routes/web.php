@@ -2,8 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController; 
+use App\Http\Controllers\ClientController; 
+use App\Http\Controllers\StudentController; 
+
+
 
 Route::get('test20', [MyController::class, 'my_data']);
+
+Route::post('insertClient', [ClientController::class, 'store'])->name('insetClient');
+Route::get('addClient', [ClientController::class, 'create']);
+
+Route::post('insetStudent', [StudentController::class, 'store'])->name('insetStudent');
+Route::get('addStudent', [StudentController::class, 'create']);
 
 Route::get('/', function () {
     return view('welcome');
