@@ -43,9 +43,7 @@ Route::get('form1', function () {
     return view('form1'); 
 });
 
-Route::post('recForm1/{id1}/{id2}', function ($id1, $id2) {
-    return ('Name is: ' . $id1 . " " . $id2)->withInput();     
-})->name('recieveForm1');
+Route::post('recForm1', [MyController::class,'recieveData'])->name('recieveForm1');
 
 /*Route::fallback(function(){
     //return('The requested page is not found');

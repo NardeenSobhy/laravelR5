@@ -8,5 +8,11 @@ class MyController extends Controller
 {
     public function my_data(){
         return view('test');
-        }
+    }
+
+    public function recieveData(Request $request){
+        $fname = $request->fname;
+        $lname = $request->lname;
+        return view('test1', compact('fname', 'lname'));
+    }
 }
