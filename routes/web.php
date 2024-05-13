@@ -10,10 +10,12 @@ use App\Http\Controllers\StudentController;
 Route::get('test20', [MyController::class, 'my_data']);
 
 Route::post('insertClient', [ClientController::class, 'store'])->name('insetClient');
-Route::get('addClient', [ClientController::class, 'create']);
+Route::get('addClient', [ClientController::class, 'create'])->name('addClient');
+Route::get('clients', [ClientController::class, 'index'])->name('clients');
 
 Route::post('insetStudent', [StudentController::class, 'store'])->name('insetStudent');
-Route::get('addStudent', [StudentController::class, 'create']);
+Route::get('addStudent', [StudentController::class, 'create'])->name('addStudent');
+Route::get('students', [StudentController::class, 'index'])->name('students');
 
 Route::get('/', function () {
     return view('welcome');
