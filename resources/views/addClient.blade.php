@@ -11,18 +11,38 @@
   <div class="container" style="margin-left: 20px">
     <h2>Insert Client</h2>
 
-    <form action="{{ route('insetClient') }}" method="POST"> <!-- {{}} = echo -->
+    <form action="{{ route('insetClient') }}" method="POST"> 
         @csrf           <!-- security token ben2l code mn el page de llpage ele hrme aleha el info -->
       <label for="clientName">Client name:</label><br>
+      <p style="color: red;">
+        @error('clientName')
+          {{ $message }}
+        @enderror
+      </p>
       <input type="text" id="clientName" name="clientName" class="form-control"><br>
 
       <label for="phone">Phone:</label><br>
+      <p style="color: red;">
+        @error('phone')
+          {{ $message }}
+        @enderror
+      </p>
       <input type="text" id="phone" name="phone" class="form-control"><br><br>
 
       <label for="email">Email:</label><br>
+      <p style="color: red;">
+        @error('email')
+          {{ $message }}
+        @enderror
+      </p>
       <input type="text" id="email" name="email" class="form-control"><br><br>
 
       <label for="website">website:</label><br>
+      <p style="color: red;">
+        @error('website')
+          {{ $message }}
+        @enderror
+      </p>
       <input type="text" id="website" name="website" class="form-control"><br><br>
 
       <input type="submit" value="Submit">

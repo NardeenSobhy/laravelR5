@@ -8,7 +8,7 @@
     <li class="active"><a href="{{ route('addStudent') }}">Add</a></li>
     <li><a href="{{ route('students') }}">Students</a></li>
     
-    <li><a href="#">Page 2</a></li>
+    <li><a href="{{ route('trashStudents') }}">Trash</a></li>
     <li><a href="#">Page 3</a></li>
     </ul>
 </div>
