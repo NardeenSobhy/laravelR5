@@ -47,6 +47,26 @@
       </p>
       <input type="text" id="website" name="website" class="form-control" value="{{ $client->website }}"><br><br>
 
+      <label for="city">City:</label><br>
+      <p style="color: red;">
+        @error('city')
+          {{ $message }}
+        @enderror
+      </p>
+      <select name="city" id="city" class="form-control" onchange="getChangedValues()">
+        <option value="">Please select city</option>
+        <option value="Cairo" {{ $client->city == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+        <option value="Giza" {{ $client->city == 'Giza' ? 'selected' : '' }}>Giza</option>
+        <option value="Alexandria" {{ $client->city == 'Alexandria' ? 'selected' : '' }}>Alexandria</option>
+      </select> 
+
+      <label for="active">active:</label><br>
+      <input type="checkbox" id="active" name="active" class="form-control"  value="1" {{ $client->active ? 'checked' : '' }} ><br><br>
+
+      <label for="image">Image:</label><br>
+      <input type="file" id="image" name="image" class="form-control" value="{{ $client->image }}"><br><br>
+      <p><img src = "{{ asset('assets/clientsImages/' . $client->image) }}" alt = ""></p>
+
       <input type="submit" value="Submit">
     </form> 
 

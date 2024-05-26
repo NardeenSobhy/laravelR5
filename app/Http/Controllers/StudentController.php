@@ -37,10 +37,23 @@ class StudentController extends Controller
         //return 'Inserted Successfully';
 
         //Validation:
+        $messages = $this->errMsg();
+        
         $data = $request->validate([
         'studentName' => 'required|max:100|min:5',
         'age' => 'required',
-        ]);
+        'city' => 'required|max:30',
+        'image' => 'required'
+        ], $messages);
+        $data['active'] = isset($request->active);
+
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgExt;
+        $path = 'assets/studentsImages';
+        $request->image->move($path, $fileName);
+
+        $data['image'] = $fileName;
+
         Student::create($data);
         return redirect('students');
     }
@@ -69,10 +82,15 @@ class StudentController extends Controller
     public function update(Request $request, string $id)
     {
         //Validation:
+        $messages = $this->errMsg();
+
         $data = $request->validate([
             'studentName' => 'required|max:100|min:5',
             'age' => 'required',
-        ]);
+            'city' => 'required|max:30',
+            'image' => 'required'
+        ], $messages);
+        
         Student::where('id', $id)->update($data);
         return redirect('students');
     }
@@ -113,5 +131,15 @@ class StudentController extends Controller
         $id = $request->id;
         Student::where('id', $id)->forceDelete();
         return redirect('trashStudents');
+    }
+
+    //Error custom messages
+    public function errMsg()
+    {
+        return [
+            'studentName.required' => 'Please insert student name',
+            'studentName.min' => 'length less than 5, please insert more chars',
+
+        ];
     }
 }

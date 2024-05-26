@@ -11,7 +11,7 @@
   <div class="container" style="margin-left: 20px">
     <h2>Insert Client</h2>
 
-    <form action="{{ route('insetClient') }}" method="POST"> 
+    <form action="{{ route('insetClient') }}" method="POST" enctype="multipart/form-data"> 
         @csrf           <!-- security token ben2l code mn el page de llpage ele hrme aleha el info -->
       <label for="clientName">Client name:</label><br>
       <p style="color: red;">
@@ -19,7 +19,7 @@
           {{ $message }}
         @enderror
       </p>
-      <input type="text" id="clientName" name="clientName" class="form-control"><br>
+      <input type="text" id="clientName" name="clientName" class="form-control" value="{{ old ('clientName') }}"><br>
 
       <label for="phone">Phone:</label><br>
       <p style="color: red;">
@@ -27,7 +27,7 @@
           {{ $message }}
         @enderror
       </p>
-      <input type="text" id="phone" name="phone" class="form-control"><br><br>
+      <input type="text" id="phone" name="phone" class="form-control" value="{{ old ('phone') }}"><br><br>
 
       <label for="email">Email:</label><br>
       <p style="color: red;">
@@ -35,7 +35,7 @@
           {{ $message }}
         @enderror
       </p>
-      <input type="text" id="email" name="email" class="form-control"><br><br>
+      <input type="text" id="email" name="email" class="form-control" value="{{ old ('email') }}"><br><br>
 
       <label for="website">website:</label><br>
       <p style="color: red;">
@@ -43,7 +43,26 @@
           {{ $message }}
         @enderror
       </p>
-      <input type="text" id="website" name="website" class="form-control"><br><br>
+      <input type="text" id="website" name="website" class="form-control" value="{{ old ('website') }}"><br><br>
+
+      <label for="city">City:</label><br>
+      <p style="color: red;">
+        @error('city')
+          {{ $message }}
+        @enderror
+      </p>
+      <select name="city" id="city" class="form-control">
+        <option value="">Please select city</option>
+        <option value="Cairo" {{ old('city') == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+        <option value="Giza" {{ old('city') == 'Giza' ? 'selected' : '' }}>Giza</option>
+        <option value="Alexandria" {{ old('city') == 'Alexandria' ? 'selected' : '' }}>Alexandria</option>
+      </select> 
+
+      <label for="active">active:</label><br>
+      <input type="checkbox" id="active" name="active" class="form-control"  value="1" {{ old('active') ? 'checked' : '' }} ><br><br>
+
+      <label for="image">Image:</label><br>
+      <input type="file" id="image" name="image" class="form-control"><br><br>
 
       <input type="submit" value="Submit">
     </form> 

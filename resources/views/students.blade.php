@@ -19,6 +19,8 @@
       <tr>
         <th>Student Name</th>
         <th>Age</th>
+        <th>City</th>
+        <th>Active</th>
         <th>Edit</th>
         <th>Show</th>
         <th>Delete</th>
@@ -29,6 +31,8 @@
         <tr>
             <td>{{ $student->studentName }}</td>
             <td>{{ $student->age }}</td>
+            <td>{{ $student->city }}</td>
+            <td>{{$student->active ? 'Yes' : 'No'}}</td>
             <td><a href="{{route('editStudent', $student->id)}}">Edit</a></td>
             <td><a href="{{route('showStudent', $student->id)}}">Show</a></td>
             <td>

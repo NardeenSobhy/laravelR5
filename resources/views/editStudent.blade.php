@@ -7,7 +7,7 @@
     <title>Edit Student</title>
   </head>
 <body>
-  @include('includes.nav');
+  @include('includes.studentNav');
 
   <div class="container" style="margin-left: 20px">
     <h2>Edit Student</h2>
@@ -30,6 +30,26 @@
         @enderror
       </p>
       <input type="text" id="age" name="age" class="form-control" value="{{ $students->age }}"><br><br>
+
+      <label for="city">City:</label><br>
+      <p style="color: red;">
+        @error('city')
+          {{ $message }}
+        @enderror
+      </p>
+      <select name="city" id="city" class="form-control" onchange="getChangedValues()">
+        <option value="">Please select city</option>
+        <option value="Cairo" {{ $students->city == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+        <option value="Giza" {{ $students->city == 'Giza' ? 'selected' : '' }}>Giza</option>
+        <option value="Alexandria" {{ $students->city == 'Alexandria' ? 'selected' : '' }}>Alexandria</option>
+      </select> 
+
+      <label for="active">active:</label><br>
+      <input type="checkbox" id="active" name="active" class="form-control"  value="1" {{ $students->active ? 'checked' : '' }} ><br><br>
+
+      <label for="image">Image:</label><br>
+      <input type="file" id="image" name="image" class="form-control" value="{{ $students->image }}"><br><br>
+      <p><img src = "{{ asset('assets/studentsImages/' . $students->image) }}" alt = ""></p>
 
       <input type="submit" value="Submit">
     </form> 

@@ -13,7 +13,7 @@
 <div class="container" style="margin-left: 20px">
   <h2>Insert Student</h2>
 
-  <form action="{{ route('insetStudent') }}" method="POST"> 
+  <form action="{{ route('insetStudent') }}" method="POST" enctype="multipart/form-data"> 
       @csrf 
     <label for="studentName">Student name:</label><br>
     <p style="color: red;">
@@ -21,7 +21,7 @@
           {{ $message }}
         @enderror
       </p>
-    <input type="text" id="studentName" name="studentName" class="form-control"><br>
+    <input type="text" id="studentName" name="studentName" class="form-control" value="{{ old ('studentName') }}"><br>
 
     <label for="age">age:</label><br>
     <p style="color: red;">
@@ -29,8 +29,27 @@
           {{ $message }}
         @enderror
       </p>
-    <input type="text" id="age" name="age" class="form-control"><br><br>
+    <input type="text" id="age" name="age" class="form-control" value="{{ old ('age') }}"><br><br>
 
+    <label for="city">City:</label><br>
+      <p style="color: red;">
+        @error('city')
+          {{ $message }}
+        @enderror
+      </p>
+      <select name="city" id="city" class="form-control">
+        <option value="">Please select city</option>
+        <option value="Cairo" {{ old('city') == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+        <option value="Giza" {{ old('city') == 'Giza' ? 'selected' : '' }}>Giza</option>
+        <option value="Alexandria" {{ old('city') == 'Alexandria' ? 'selected' : '' }}>Alexandria</option>
+      </select>
+
+      <label for="active">active:</label><br>
+      <input type="checkbox" id="active" name="active" class="form-control" value="1" {{ old('active') ? 'checked' : '' }}><br><br>
+
+      <label for="image">Image:</label><br>
+      <input type="file" id="image" name="image" class="form-control"><br><br>
+      
     <input type="submit" value="Submit">
   </form> 
 
