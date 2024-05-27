@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<p><img src = "{{ asset('assets/studentsImages/' . $students->image) }}" alt = ""></p>
+<p><img src = "{{ asset('assets/studentsImages/' . $students->image) }}" alt = "" style="width: 300px;"></p>
     <h1><strong>Student: </strong>{{$students->studentName}}</h1>
     <hr>
     <h2><strong>Age: </strong>{{$students->age}}</h2>

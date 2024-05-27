@@ -12,7 +12,7 @@
   <div class="container" style="margin-left: 20px">
     <h2>Edit Client</h2>
 
-    <form action="{{ route('updateclient', $client->id) }}" method="POST"> 
+    <form action="{{ route('updateclient', $client->id) }}" method="POST" enctype="multipart/form-data"> 
         @csrf
         @method('put')
       <label for="clientName">Client name:</label><br>
@@ -64,8 +64,13 @@
       <input type="checkbox" id="active" name="active" class="form-control"  value="1" {{ $client->active ? 'checked' : '' }} ><br><br>
 
       <label for="image">Image:</label><br>
+      <p style="color: red;">
+        @error('image')
+          {{ $message }}
+        @enderror
+      </p>
       <input type="file" id="image" name="image" class="form-control" value="{{ $client->image }}"><br><br>
-      <p><img src = "{{ asset('assets/clientsImages/' . $client->image) }}" alt = ""></p>
+      <p><img src = "{{ asset('assets/clientsImages/' . $client->image) }}" alt = "" style="width: 300px;"></p>
 
       <input type="submit" value="Submit">
     </form> 

@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Traits\Traits\UploadFile;
 
 class ClientController extends Controller
 {
-    private $columns = ['clientName', 'phone', 'email', 'website'];
+    use UploadFile;
+    //private $columns = ['clientName', 'phone', 'email', 'website'];
     /**
      * Display a listing of the resource.
      */
@@ -52,10 +54,11 @@ class ClientController extends Controller
         ], $messages);
         $data['active'] = isset($request->active);
 
-        $imgExt = $request->image->getClientOriginalExtension();
+        /*$imgExt = $request->image->getClientOriginalExtension();
         $fileName = time() . '.' . $imgExt;
         $path = 'assets/clientsImages';
-        $request->image->move($path, $fileName);
+        $request->image->move($path, $fileName);*/
+        $fileName = $this->upload($request->image, 'assets/clientsImages');
 
         $data['image'] = $fileName;
 
@@ -96,15 +99,19 @@ class ClientController extends Controller
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required|max:30',
-            'image' => 'required'
+            'image' => 'sometimes|image' //nullable
         ], $messages);
 
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/clientsImages';
-        $request->image->move($path, $fileName);
+        //if($request->hasFile('image')){
+            /*$imgExt = $request->image->getClientOriginalExtension();
+            $fileName = time() . '.' . $imgExt;
+            $path = 'assets/clientsImages';
+            $request->image->move($path, $fileName);*/
+            $fileName = $this->upload($request->image, 'assets/clientsImages');
 
-        $data['image'] = $fileName;
+            $data['image'] = $fileName;
+            //storage - unlink
+        //}
 
         Client::where('id', $id)->update($data);
         return redirect('clients');

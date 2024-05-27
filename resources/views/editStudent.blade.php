@@ -49,7 +49,7 @@
 
       <label for="image">Image:</label><br>
       <input type="file" id="image" name="image" class="form-control" value="{{ $students->image }}"><br><br>
-      <p><img src = "{{ asset('assets/studentsImages/' . $students->image) }}" alt = ""></p>
+      <p><img src = "{{ asset('assets/studentsImages/' . $students->image) }}" alt = "" style="width: 300px;"></p>
 
       <input type="submit" value="Submit">
     </form> 

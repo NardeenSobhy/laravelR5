@@ -43,17 +43,18 @@ class StudentController extends Controller
         'studentName' => 'required|max:100|min:5',
         'age' => 'required',
         'city' => 'required|max:30',
-        'image' => 'required'
+        'image' => 'sometimes|image'
         ], $messages);
         $data['active'] = isset($request->active);
 
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/studentsImages';
-        $request->image->move($path, $fileName);
+        if($request->hasFile('image')){
+            $imgExt = $request->image->getClientOriginalExtension();
+            $fileName = time() . '.' . $imgExt;
+            $path = 'assets/studentsImages';
+            $request->image->move($path, $fileName);
 
-        $data['image'] = $fileName;
-
+            $data['image'] = $fileName;
+        }
         Student::create($data);
         return redirect('students');
     }
