@@ -33,7 +33,7 @@ Route::get('restoreStudent/{id}', [StudentController::class, 'restore'])->name('
 Route::delete('forceDelStudent', [StudentController::class, 'forceDelete'])->name('forceDelStudent');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('stacked');
 });
 
 /*Route::get('nardeen/{id?}', function ($id = 0) {  // ? -> optional constrain with a default given value

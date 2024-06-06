@@ -9,7 +9,8 @@
     <li><a href="{{ route('clients') }}">Clients</a></li>
     
     <li><a href="{{ route('trashClients') }}">Trash</a></li>
-    <li><a href="#">Page 3</a></li>
+    @yield('menu')
+    @stack('submenu')
     </ul>
 </div>
 </nav>
